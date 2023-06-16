@@ -1,7 +1,7 @@
 <h1 align="center">FunPay Vertex</h1>
 <h4 align="center">Простой и эффективный бот для автоматизации FunPay</h4>
 
-![image](https://github.com/nekocode2006/FunPayVertex/assets/79002835/c4d283c6-bdab-4cdc-adee-a906c6213070)
+![image](https://github.com/nekocode2006/FunPayVertex/assets/79002835/f3fa6545-5b93-4390-8cce-106ec2e28fe9)
 
 
 <h2 align="center">Перед началом настоятельно рекомендую залететь в наш <a href="https://t.me/funpayplace">Telegram чат</a> и <a href="https://dsc.gg/funpay">Discord сервер</a>. Тут и поможем чем сможем и посидеть можно.</h2>
