@@ -1,18 +1,10 @@
-"""
-В данном модуле написаны хэндлеры для разных эвентов.
-"""
-
 from __future__ import annotations
-
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from vertex import Vertex
-
 from FunPayAPI.types import OrderShortcut, Order
 from FunPayAPI import exceptions, utils as fp_utils
 from FunPayAPI.updater.events import *
-
-
 from tg_bot import utils, keyboards
 from Utils import vertex_tools
 from locales.localizer import Localizer
@@ -23,15 +15,12 @@ import logging
 import time
 import re
 
-
 LAST_STACK_ID = ""
 MSG_LOG_LAST_STACK_ID = ""
-
 
 logger = logging.getLogger("FPV.handlers")
 localizer = Localizer()
 _ = localizer.translate
-
 
 ORDER_HTML_TEMPLATE = """<a href="https://funpay.com/orders/DELITEST/" class="tc-item">
    <div class="tc-date" bis_skin_checked="1">
