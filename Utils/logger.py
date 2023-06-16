@@ -1,11 +1,7 @@
-"""
-В данном модуле написаны форматтеры для логгера.
-"""
 from colorama import Fore, Back, Style
 import logging.handlers
 import logging
 import re
-
 
 LOG_COLORS = {
         logging.DEBUG: Fore.BLACK + Style.BRIGHT,
@@ -15,9 +11,9 @@ LOG_COLORS = {
         logging.CRITICAL: Back.RED
 }
 
-CLI_LOG_FORMAT = f"{Fore.BLACK + Style.BRIGHT}[%(asctime)s]{Style.RESET_ALL}"\
-                 f"{Fore.CYAN}>{Style.RESET_ALL} $RESET%(levelname).1s: %(message)s{Style.RESET_ALL}"
-CLI_TIME_FORMAT = "%d-%m-%Y %H:%M:%S"
+CLI_LOG_FORMAT = f"{Fore.YELLOW + Style.BRIGHT}>{Fore.BLUE + Style.BRIGHT} [%(asctime)s]{Style.RESET_ALL}"\
+                 f"{Fore.CYAN}{Style.RESET_ALL} $RESET[%(levelname).15s]: %(message)s{Style.RESET_ALL}"
+CLI_TIME_FORMAT = "%H:%M:%S"
 
 FILE_LOG_FORMAT = "[%(asctime)s][%(filename)s][%(lineno)d]> %(levelname).1s: %(message)s"
 FILE_TIME_FORMAT = "%H:%M:%S"
@@ -25,21 +21,6 @@ CLEAR_RE = re.compile(r"(\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~]))|(\n)|(\r)")
 
 
 def add_colors(text: str) -> str:
-    """
-    Заменяет ключевые слова на коды цветов.
-
-    $YELLOW - желтый текст.
-
-    $CYAN - светло-голубой текст.
-
-    $MAGENTA - фиолетовый текст.
-
-    $BLUE - синий текст.
-
-    :param text: текст.
-
-    :return: цветной текст.
-    """
     colors = {
         "$YELLOW": Fore.YELLOW,
         "$CYAN": Fore.CYAN,
@@ -64,9 +45,6 @@ def add_colors(text: str) -> str:
 
 
 class CLILoggerFormatter(logging.Formatter):
-    """
-    Форматтер для вывода логов в консоль.
-    """
     def __init__(self):
         super(CLILoggerFormatter, self).__init__()
 
@@ -81,9 +59,6 @@ class CLILoggerFormatter(logging.Formatter):
 
 
 class FileLoggerFormatter(logging.Formatter):
-    """
-    Форматтер для сохранения логов в файл.
-    """
     def __init__(self):
         super(FileLoggerFormatter, self).__init__()
 
