@@ -1,12 +1,7 @@
-"""
-В данном модуле написана подпрограмма первичной настройки FunPay Vertex.
-"""
-
 import os
 from configparser import ConfigParser
 import time
 from colorama import Fore, Style
-
 
 default_config = {
     "FunPay": {
@@ -96,13 +91,6 @@ def create_configs():
 
 
 def create_config_obj(settings) -> ConfigParser:
-    """
-    Создает объект конфига с нужными настройками.
-
-    :param settings: dict настроек.
-
-    :return: объект конфига.
-    """
     config = ConfigParser(delimiters=(":", ), interpolation=None)
     config.optionxform = str
     config.read_dict(settings)
@@ -113,39 +101,39 @@ def first_setup():
     config = create_config_obj(default_config)
     sleep_time = 1
 
-    print(f"{Fore.CYAN}{Style.BRIGHT}Привет! {Fore.RED}(`-`)/{Style.RESET_ALL}")
+    print(f"{Fore.CYAN}{Style.BRIGHT}Привет! {Fore.RED}{Style.RESET_ALL}")
     time.sleep(sleep_time)
 
-    print(f"\n{Fore.CYAN}{Style.BRIGHT}Не могу найти основной конфиг... {Fore.RED}(-_-;). . .{Style.RESET_ALL}")
+    print(f"\n{Fore.CYAN}{Style.BRIGHT}Не могу найти основной конфиг... {Fore.RED}{Style.RESET_ALL}")
     time.sleep(sleep_time)
 
-    print(f"\n{Fore.CYAN}{Style.BRIGHT}Давай ка проведем первичную настройку! {Fore.RED}°++°{Style.RESET_ALL}")
+    print(f"\n{Fore.CYAN}{Style.BRIGHT}Давай ка проведем первичную настройку! {Fore.RED}{Style.RESET_ALL}")
     time.sleep(sleep_time)
 
     while True:
         print(f"\n{Fore.MAGENTA}{Style.BRIGHT}┌── {Fore.CYAN}"
-              f"Для начала введи токен (golden_key) твоего FunPay аккаунта {Fore.RED}(._.){Style.RESET_ALL}")
+              f"Для начала введи токен (golden_key) твоего FunPay аккаунта {Fore.RED}{Style.RESET_ALL}")
         golden_key = input(f"{Fore.MAGENTA}{Style.BRIGHT}└───> {Style.RESET_ALL}").strip()
         if len(golden_key) != 32:
-            print(f"\n{Fore.CYAN}{Style.BRIGHT}Неверный формат токена. Попробуй еще раз! {Fore.RED}\(!!˚0˚)/{Style.RESET_ALL}")
+            print(f"\n{Fore.CYAN}{Style.BRIGHT}Неверный формат токена. Попробуй еще раз! {Fore.RED}{Style.RESET_ALL}")
             continue
         config.set("FunPay", "golden_key", golden_key)
         break
 
     print(f"\n{Fore.MAGENTA}{Style.BRIGHT}┌── {Fore.CYAN}"
           f"Если хочешь, ты можешь указать свой User-agent. Если ты не знаешь, что это такое, просто нажми Enter. "
-          f"{Fore.RED}¯\(°_o)/¯{Style.RESET_ALL}")
+          f"{Fore.RED}{Style.RESET_ALL}")
     user_agent = input(f"{Fore.MAGENTA}{Style.BRIGHT}└───> {Style.RESET_ALL}").strip()
     if user_agent:
         config.set("FunPay", "user_agent", user_agent)
 
     while True:
         print(f"\n{Fore.MAGENTA}{Style.BRIGHT}┌── {Fore.CYAN}"
-              f"Нужно ли включать Telegram бота? (1 - да / 0 - нет) {Fore.RED}(Ծ- Ծ){Style.RESET_ALL}")
+              f"Нужно ли включать Telegram бота? (1 - да / 0 - нет) {Fore.RED}{Style.RESET_ALL}")
 
         tg = input(f"{Fore.MAGENTA}{Style.BRIGHT}└───> {Style.RESET_ALL}").strip()
         if tg not in ["0", "1"]:
-            print(f"\n{Fore.CYAN}{Style.BRIGHT}Не понял тебя... Попробуй еще раз! {Fore.RED}\(!!˚0˚)/{Style.RESET_ALL}")
+            print(f"\n{Fore.CYAN}{Style.BRIGHT}Не понял тебя... Попробуй еще раз! {Fore.RED}{Style.RESET_ALL}")
             continue
         if tg == "1":
             while True:
@@ -153,16 +141,16 @@ def first_setup():
                       f" {Fore.RED}(._.){Style.RESET_ALL}")
                 token = input(f"{Fore.MAGENTA}{Style.BRIGHT}└───> {Style.RESET_ALL}").strip()
                 if not token:
-                    print(f"\n{Fore.CYAN}{Style.BRIGHT}Попробуй еще раз! {Fore.RED}\(!!˚0˚)/{Style.RESET_ALL}")
+                    print(f"\n{Fore.CYAN}{Style.BRIGHT}Попробуй еще раз! {Fore.RED}{Style.RESET_ALL}")
                     continue
                 break
 
             while True:
                 print(f"\n{Fore.MAGENTA}{Style.BRIGHT}┌── {Fore.CYAN}Придумай пароль (его потребует Telegram-бот) "
-                      f" {Fore.RED}ᴖ̮ ̮ᴖ{Style.RESET_ALL}")
+                      f" {Fore.RED}{Style.RESET_ALL}")
                 password = input(f"{Fore.MAGENTA}{Style.BRIGHT}└───> {Style.RESET_ALL}").strip()
                 if not password:
-                    print(f"\n{Fore.CYAN}{Style.BRIGHT}Попробуй еще раз! {Fore.RED}\(!!˚0˚)/{Style.RESET_ALL}")
+                    print(f"\n{Fore.CYAN}{Style.BRIGHT}Попробуй еще раз! {Fore.RED}{Style.RESET_ALL}")
                     continue
                 break
 
@@ -173,8 +161,8 @@ def first_setup():
         break
 
     print(f"\n{Fore.CYAN}{Style.BRIGHT}Готово! Сейчас я сохраню конфиг и завершу программу! "
-          f"{Fore.RED}ʘ>ʘ{Style.RESET_ALL}")
+          f"{Fore.RED}{Style.RESET_ALL}")
     print(f"{Fore.CYAN}{Style.BRIGHT}Запусти меня снова и напиши своему Telegram-боту (если ты его включил). "
-          f"Все остальное ты сможешь настроить через него. {Fore.RED}ʕ•ᴥ•ʔ{Style.RESET_ALL}")
+          f"Все остальное ты сможешь настроить через него. {Fore.RED}{Style.RESET_ALL}")
     with open("configs/_main.cfg", "w", encoding="utf-8") as f:
         config.write(f)
